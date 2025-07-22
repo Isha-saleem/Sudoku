@@ -1,137 +1,170 @@
-body {
-    font-family: monospace;
-    text-align: center;
-}
+ body {
+            font-family: 'Inter', monospace; /* Keeping monospace as requested, but Inter is a good fallback */
+            text-align: center;
+            overflow: hidden; /* Prevent body scroll */
+        }
 
-.panel {
-    margin: 0;
-    padding: 0;
-    font-size: 0;
-}
+        /* --- Your Original Sudoku Grid & Controls CSS (Adapted/Integrated) --- */
+        /* These are kept mostly as-is to preserve your grid's specific rendering */
 
-h1 {
-    text-align: center;
-}
+        .panel {
+            margin: 0;
+            padding: 0;
+            font-size: 0; /* This seems intended to collapse whitespace around inline elements */
+        }
 
-table {
-    display: inline-block;
-    font-size: 14px;
-}
+        h1 {
+            text-align: center;
+            /* Tailwind will add more styling */
+        }
 
-#grid {
-    margin-top: 4px;
-    border-collapse: collapse;
-    border-spacing: 0;
-}
+        table {
+            display: inline-block;
+            font-size: 14px;
+        }
 
-.gridRow {
-    margin: 0;
-    padding: 0;
-}
+        #grid {
+            margin-top: 4px;
+            border-collapse: collapse;
+            border-spacing: 0;
+            /* Tailwind will add background and shadow */
+        }
 
-.gridCell {
-    width: 2em;
-    height: 2em;
-    text-align: center;
-    font-weight: bold;
-    font-size: 120%;
-    border: 1px dotted black;
-    margin: 0;
-    padding: 4px;
-}
+        .gridRow {
+            margin: 0;
+            padding: 0;
+        }
 
-.topBorder {
-    border-top: 2px solid black;
-}
+        .gridCell {
+            width: 2em;
+            height: 2em;
+            text-align: center;
+            font-weight: bold;
+            font-size: 120%;
+            border: 1px dotted black; /* Original dotted border */
+            margin: 0;
+            padding: 4px;
+            cursor: pointer; /* Indicate clickable */
+            transition: background-color 0.2s ease; /* Smooth hover/select */
+        }
 
-.bottomBorder {
-    border-bottom: 2px solid black;
-}
+        /* Thick borders for 3x3 blocks */
+        .topBorder { border-top: 2px solid black; }
+        .bottomBorder { border-bottom: 2px solid black; }
+        .leftBorder { border-left: 2px solid black; }
+        .rightBorder { border-right: 2px solid black; }
 
-.leftBorder {
-    border-left: 2px solid black;
-}
+        #digits {
+            margin-left: 4px;
+            border-spacing: 8px; /* Spacing between digit buttons */
+        }
 
-.rightBorder {
-    border-right: 2px solid black;
-}
-
-#digits {
-    margin-left: 4px;
-    border-spacing: 8px;
-}
-
-.digit {
-    width: 1.45em;
-    height: 1.45em;
-    text-align: center;
-    font-size: 175%;
-    border: 1.5px solid #222;
-    border-radius: 8px;
-    padding: 0px;
-    margin: 0;
-}
+        .digit {
+            width: 1.45em;
+            height: 1.45em;
+            text-align: center;
+            font-size: 175%;
+            border: 1.5px solid #222;
+            border-radius: 8px;
+            padding: 0px;
+            margin: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
 
 
-ul {
-  margin: 0px auto;
-  padding-left: 5px;
-  max-width: 700px;
-  list-style: none;
-  text-align: left;
-  font-size: 1px;
-  display: inline-block;
-}
-li {
-  position: relative;
-  z-index: 0;
-  display: inline-block;
-  padding: 0 8px;
-  width: 42px;
-  list-style: none;
-  text-align: center;
-  font-weight: normal;
-  font-size: 32px;
-  cursor: pointer;
-}
+        ul {
+            margin: 0px auto;
+            padding-left: 5px;
+            max-width: 700px; /* Original max-width for ul */
+            list-style: none;
+            text-align: left;
+            font-size: 1px; /* Original very small font-size, will override with li */
+            display: inline-block;
+        }
+        li {
+            position: relative;
+            z-index: 0;
+            display: inline-block;
+            padding: 0 8px;
+            width: 42px;
+            list-style: none;
+            text-align: center;
+            font-weight: normal;
+            font-size: 32px; /* Original font size, will override with specific li */
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
 
-#newGrid ul {
-    margin: 0 auto;
-}
-#newGrid li {
-    display: table;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 24px;
-    color: #FF6;
-    font-size: 18px;
-    cursor: pointer;
-    padding-bottom: 6px;
-}
+        #newGrid ul, #restart ul, #help ul {
+            margin: 0 auto;
+            max-width: none; /* Override original ul max-width for these specific sections */
+        }
 
-#restart li {
-    font-size: 24px;
-    width: auto;
-}
+        #newGrid li, #restart li, .helpButton { /* Combined for similar styling */
+            display: table; /* To center content horizontally */
+            margin: 0 auto;
+            text-align: center;
+            font-size: 18px; /* Original size */
+            color: #FF6; /* Original color, will be overridden by Tailwind */
+            cursor: pointer;
+            padding-bottom: 6px;
+            /* Tailwind will add bg, padding, rounded, shadow, hover effects */
+        }
 
-#help ul {
-    width: 250px; 
-}
-.help {
-    font-size: 14px;
-    width: 160px;
-    text-align: left;
-    top: -8px;
-}
-#help p {
-    font-weight: bold;
-    text-align: left;
-    margin-top: 18px;
-    margin-bottom: 8px;
-    font-size: 16px;
-}
-.helpButton {
-    color: #FF6;
-    padding-bottom: 6px;
-    cursor: pointer;
-}
+        #restart li {
+            font-size: 24px; /* Original size */
+            width: auto; /* Original width */
+        }
+
+        #help ul {
+            width: 250px;
+        }
+        .help {
+            font-size: 14px;
+            width: 160px;
+            text-align: left;
+            top: -8px;
+        }
+        #help p {
+            font-weight: bold;
+            text-align: left;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        /* --- New Tailwind & Baby Blue Theme --- */
+        .baby-blue-gradient {
+            background: linear-gradient(to bottom right, #ADD8E6, #87CEEB, #6495ED); /* Light Blue to Cornflower Blue */
+        }
+        .text-baby-blue-dark {
+            color: #2F4F4F; /* Dark Slate Gray for contrast */
+        }
+        .bg-baby-blue-light {
+            background-color: #E0FFFF; /* Light Cyan */
+        }
+        .border-baby-blue-dark {
+            border-color: #4682B4; /* Steel Blue */
+        }
+
+        /* Specific cell states (from previous Sudoku game for better UX) */
+        .gridCell.selected {
+            background-color: #B0E0E6; /* Powder Blue */
+            border-color: #4682B4; /* Steel Blue */
+        }
+        .gridCell.highlighted {
+            background-color: #F0F8FF; /* Alice Blue */
+        }
+        .gridCell.prefilled {
+            background-color: #D3D3D3; /* Light Gray */
+            color: #333;
+            cursor: not-allowed;
+        }
+        .gridCell.user-entered {
+            color: #000080; /* Navy Blue */
+        }
+        .gridCell.conflict {
+            background-color: #FFC0CB; /* Pink */
+            color: #8B0000; /* Dark Red */
+        }
